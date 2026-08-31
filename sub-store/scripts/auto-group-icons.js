@@ -16,7 +16,7 @@ const compiledAppIcons = Object.entries(dict.appIcons).map(([key, url]) => {
 
 const compiledCountryRegions = dict.countryRegions.map(region => ({
     icon: region.icon,
-    regex: new RegExp(region.filter, 'i'),
+    regex: new RegExp(region.filter.replace(/^\(\?i\)/, ''), 'i'),
 }));
 
 function getIconForGroup(groupName) {
