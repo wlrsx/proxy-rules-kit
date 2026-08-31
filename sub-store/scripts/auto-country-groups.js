@@ -18,10 +18,13 @@ const TEST_URL = "https://www.gstatic.com/generate_204";
 // const TEST_URL = "http://captive.apple.com/hotspot-detect.html"; // Apple 苹果官方测速
 // const TEST_URL = "http://wifi.vivo.com.cn/generate_204";         // 国内连通性测试 (Vivo)
 
-const fallbackTemplate = { type: "fallback", url: TEST_URL, interval: 300 };
-const urltestTemplate  = { type: "url-test", url: TEST_URL, interval: 300, tolerance: 50 };
-const lbHashTemplate   = { type: "load-balance", strategy: "consistent-hashing", url: TEST_URL, interval: 300 };
-const lbRRTemplate     = { type: "load-balance", strategy: "round-robin", url: TEST_URL, interval: 300 };
+const tpl = config['group-anchors'] || {};
+
+const selectTemplate   = tpl['Select']   || { type: "select" };
+const fallbackTemplate = tpl['Fallback'] || { type: "fallback", url: TEST_URL, interval: 300 };
+const urltestTemplate  = tpl['URLTest']  || { type: "url-test", url: TEST_URL, interval: 300, tolerance: 50 };
+const lbHashTemplate   = tpl['LB-CH']    || { type: "load-balance", strategy: "consistent-hashing", url: TEST_URL, interval: 300 };
+const lbRRTemplate     = tpl['LB-RR']    || { type: "load-balance", strategy: "round-robin", url: TEST_URL, interval: 300 };
 
 const existingGroups = Array.isArray(config["proxy-groups"]) ? config["proxy-groups"] : [];
 // 预编译正则，探测存在的国家
@@ -70,7 +73,8 @@ if (targetGroup) {
     config["proxy-groups"].unshift({
         name: targetGroupName,
         type: "select",
-        proxies: [...generatedNamesArr]
+        proxies: [...generatedNamesArr],
+        "include-all": true
     });
 }
 
