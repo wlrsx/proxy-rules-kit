@@ -1,1 +1,46 @@
+group-anchors:
+  Select: &Select
+    type: select
+    include-all: true
+    # disable-udp: false  # 默认即为 false，可省略以保持配置清爽
+    # hidden: false       # 默认即为 false，可省略
 
+  Fallback: &Fallback
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 5000
+    max-failed-times: 3
+    lazy: false
+    include-all: true
+
+  URLTest: &URLTest
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 5000
+    tolerance: 50
+    lazy: false
+    include-all: true
+
+  LB-RR: &LB-RR
+    type: load-balance
+    strategy: round-robin
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 5000
+    max-failed-times: 3
+    lazy: false
+    hidden: true
+    include-all: true
+
+  LB-CH: &LB-CH
+    type: load-balance
+    strategy: consistent-hashing
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 5000
+    max-failed-times: 3
+    lazy: false
+    hidden: true
+    include-all: true
