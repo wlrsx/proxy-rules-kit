@@ -1,6 +1,72 @@
+const ICON_BASE = "https://fastly.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/icons";
 const FLAG_ICON_BASE = "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags";
 
 const dict = {
+    appIcons: {
+        // 即时通讯 / 社交 Social
+        "whatsapp": `${ICON_BASE}/Social/WhatsApp-1.png`,
+        "telegram": `${ICON_BASE}/Social/Telegram-1.png`,
+        "discord": `${ICON_BASE}/Social/Discord-1.png`,
+        "facebook": `${ICON_BASE}/Social/Facebook-1.png`,
+        "instagram": `${ICON_BASE}/Social/Instagram-1.png`,
+        "messenger": `${ICON_BASE}/Social/Messenger.png`,
+        "reddit": `${ICON_BASE}/Social/Reddit-1.png`,
+        "twitter": `${ICON_BASE}/Social/X-1.png`,
+        "x-twitter": `${ICON_BASE}/Social/X-1.png`,
+        "threads": `${ICON_BASE}/Social/Threads-1.png`,
+        "line": `${ICON_BASE}/Social/Line.png`,
+        "wechat": `${ICON_BASE}/Social/WeChat-1.png`,
+        "tiktok": `${ICON_BASE}/Social/TikTok-1.png`,
+
+        // AI
+        "chatgpt": `${ICON_BASE}/AI/OpenAI-1.png`,
+        "openai": `${ICON_BASE}/AI/OpenAI-1.png`,
+        "claude": `${ICON_BASE}/AI/Anthropic-1.png`,
+        "anthropic": `${ICON_BASE}/AI/Anthropic-1.png`,
+        "copilot": `${ICON_BASE}/AI/Copilot-1.png`,
+        "perplexity": `${ICON_BASE}/AI/Perplexity.png`,
+        "gemini": `${ICON_BASE}/Google/Gemini.png`,
+
+        // 影音 / 流媒体 Media & Music
+        "netflix": `${ICON_BASE}/Media/Netflix-1.png`,
+        "disney": `${ICON_BASE}/Media/Disney-Plus-1.png`,
+        "hbo": `${ICON_BASE}/Media/HBO-1.png`,
+        "hulu": `${ICON_BASE}/Media/Hulu.png`,
+        "primevideo": `${ICON_BASE}/Media/PrimeVideo-1.png`,
+        "prime video": `${ICON_BASE}/Media/PrimeVideo-1.png`,
+        "youtube": `${ICON_BASE}/Media/YouTube-1.png`,
+        "spotify": `${ICON_BASE}/Music/Spotify-1.png`,
+        "tidal": `${ICON_BASE}/Music/TIDAL-1.png`,
+
+        // Google / Microsoft
+        "google": `${ICON_BASE}/Google/Google-1.png`,
+        "gmail": `${ICON_BASE}/Google/Gmail.png`,
+        "microsoft": `${ICON_BASE}/Microsoft/Microsoft-1.png`,
+        "bing": `${ICON_BASE}/Microsoft/Bing-1.png`,
+        "onedrive": `${ICON_BASE}/Microsoft/OneDrive.png`,
+
+        // 支付 / 金融 Payment
+        "paypal": `${ICON_BASE}/Payment/PayPal-1.png`,
+        "wise": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Wise_Logo_512x124.svg", // Oasisic-Icons 暂无 Wise，沿用原有来源
+        "alipay": `${ICON_BASE}/Payment/AliPay.png`,
+
+        // 云盘 Drive
+        "dropbox": `${ICON_BASE}/Drive/Dropbox-1.png`,
+        "googledrive": `${ICON_BASE}/Google/GoogleDrive.png`,
+
+        // 工具 Tool
+        "github": `${ICON_BASE}/Tool/GitHub-1.png`,
+        "notion": `${ICON_BASE}/Tool/Notion.png`,
+        "cloudflare": `${ICON_BASE}/Tool/Cloudflare.png`,
+        "1password": `${ICON_BASE}/Tool/1Password.png`,
+        "speedtest": `${ICON_BASE}/Tool/Speedtest-1.png`,
+
+        // 游戏 Game
+        "steam": `${ICON_BASE}/Game/Steam-1.png`,
+        "xbox": `${ICON_BASE}/Game/Xbox.png`,
+        "playstation": `${ICON_BASE}/Game/PlayStation-1.png`,
+        "epicgames": `${ICON_BASE}/Game/EpicGames.png`,
+    },
     // 过滤规则严格排序：
     // 国旗 | 国家代码 | 国家英文全名 | 简体中文全名 | 繁体中文命名 | 简体城市命名 | 繁体城市命名 | 城市英文全名
     countryRegions: [
