@@ -24,7 +24,7 @@ const existingGroups = Array.isArray(config["proxy-groups"]) ? config["proxy-gro
 const nodeNames = (Array.isArray(config.proxies) ? config.proxies : []).map(p => p.name || "");
 const compiledCountryRegions = countryRegions.map(region => ({
     ...region,
-    regex: new RegExp(region.filter, 'i'),
+    regex: new RegExp(region.filter.replace(/^\(\?i\)/, ''), 'i'),
 }));
 
 const presentCountries = compiledCountryRegions.filter(({ regex }) => {
