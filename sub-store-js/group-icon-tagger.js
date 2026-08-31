@@ -1,3 +1,5 @@
+// ProxyIconAutoTagger：为 proxy-groups 自动匹配并注入 icon（应用图标优先，其次国家/地区）
+
 // 1. 将 YAML 字符串解析为 JS 对象
 let config = ProxyUtils.yaml.safeLoad($content ?? $files[0]);
 
