@@ -117,7 +117,31 @@ const dict = {
         { code: "ZA", icon: `${FLAG_ICON_BASE}/za.svg`, filter: "(?i)(🇿🇦|\\bZA\\b|South\\sAfrica|南非|南非|约翰内斯堡|約翰內斯堡|Johannesburg)" },
         { code: "EG", icon: `${FLAG_ICON_BASE}/eg.svg`, filter: "(?i)(🇪🇬|\\bEG\\b|Egypt|埃及|埃及|开罗|開羅|Cairo)" },
         { code: "NG", icon: `${FLAG_ICON_BASE}/ng.svg`, filter: "(?i)(🇳🇬|\\bNG\\b|Nigeria|尼日利亚|尼日利亞|拉各斯|拉各斯|Lagos)" }
-    ]
+    ],
+    appRules: {
+      "AI": [
+        { key: "ai_domain", kind: "domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs" }
+      ],
+      "TikTok": [
+        { key: "tiktok_domain", kind: "domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs" }
+      ],
+      "TikTok-Bypass": [
+        { key: "tiktok_bypass", kind: "domain", behavior: "domain", format: "yaml",
+          url: "https://cdn.jsdelivr.net/gh/wlrsx/clash-rules-lite@refs/heads/main/rules/TikTok_Bypass.list" }
+      ],
+      "Whatsapp": [
+        { key: "whatsapp_domain", kind: "domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/whatsapp.mrs" }
+      ],
+      "Facebook": [
+        { key: "facebook_domain", kind: "domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs" },
+        { key: "instagram_domain", kind: "domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/instagram.mrs" },
+      ],
+    },
 };
 
 return dict;
