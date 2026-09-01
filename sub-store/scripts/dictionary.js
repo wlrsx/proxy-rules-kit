@@ -120,25 +120,25 @@ const dict = {
     ],
     appRules: {
       "AI": [
-        { key: "ai_domain", kind: "domain", behavior: "domain", format: "mrs",
+        { key: "ai_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs" }
       ],
       "TikTok": [
-        { key: "tiktok_domain", kind: "domain", behavior: "domain", format: "mrs",
+        { key: "tiktok_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs" }
       ],
       "TikTok-Bypass": [
-        { key: "tiktok_bypass", kind: "domain", behavior: "domain", format: "yaml",
+        { key: "tiktok_bypass", behavior: "domain", format: "yaml",
           url: "https://raw.githubusercontent.com/wlrsx/proxy-rules-kit/refs/heads/main/rules/TikTok/TikTok-Bypass.yaml" }
       ],
       "Whatsapp": [
-        { key: "whatsapp_domain", kind: "domain", behavior: "domain", format: "mrs",
+        { key: "whatsapp_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/whatsapp.mrs" }
       ],
       "Facebook": [
-        { key: "facebook_domain", kind: "domain", behavior: "domain", format: "mrs",
+        { key: "facebook_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs" },
-        { key: "instagram_domain", kind: "domain", behavior: "domain", format: "mrs",
+        { key: "instagram_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/instagram.mrs" },
       ],
     },
