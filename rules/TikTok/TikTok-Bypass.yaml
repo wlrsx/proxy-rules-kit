@@ -8,4 +8,4 @@ payload:
   - DOMAIN-SUFFIX,akamai.net
   - DOMAIN-SUFFIX,akamaiedge.net
   - DOMAIN-SUFFIX,akadns.net
-  - DOMAIN-WILDCARD,*.www.tiktok.com
+#  - DOMAIN-WILDCARD,*.www.tiktok.com
