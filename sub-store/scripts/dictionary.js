@@ -123,17 +123,35 @@ const dict = {
         { key: "customproxy_domain", behavior: "domain", format: "yaml",
           url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/CustomProxy.yaml" }
       ],
-      "AI": [
-        { key: "ai_domain", behavior: "domain", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs" }
+      "TikTok-Bypass": [
+        { key: "tiktok_bypass", behavior: "domain", format: "yaml",
+          url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/TikTok/TikTok-Bypass.yaml" }
       ],
       "TikTok": [
         { key: "tiktok_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs" }
       ],
-      "TikTok-Bypass": [
-        { key: "tiktok_bypass", behavior: "domain", format: "yaml",
-          url: "https://raw.githubusercontent.com/wlrsx/proxy-rules-kit/refs/heads/main/rules/TikTok/TikTok-Bypass.yaml" }
+      "AI": [
+        { key: "ai_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs" }
+      ],
+      "DeepSeek": [
+        { key: "deepseek_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/deepseek.mrs" }
+      ],
+       "YouTube": [
+        { key: "youtube_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs" }
+      ],
+       "Google": [
+        { key: "google_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs" },
+        { key: "google_ipcidr", behavior: "ipcidr", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs" },
+      ],
+       "Microsoft": [
+        { key: "microsoft_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs" }
       ],
       "Whatsapp": [
         { key: "whatsapp_domain", behavior: "domain", format: "mrs",
@@ -142,14 +160,30 @@ const dict = {
       "Facebook": [
         { key: "facebook_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs" },
+        { key: "facebook_ipcidr", behavior: "ipcidr", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/facebook.mrs" },
+      ],
+      "Instagram": [
         { key: "instagram_domain", behavior: "domain", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/instagram.mrs" },
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/instagram.mrs" }
+      ],
+      "X": [
+        { key: "x_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/x.mrs" }
+      ],
+      "Reddit": [
+        { key: "reddit_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/reddit.mrs" }
       ],
       "Telegram": [
         { key: "telegram_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs" },
         { key: "telegram_ipcidr", behavior: "ipcidr", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs", noResolve: true },
+      ],
+      "Games": [
+        { key: "games_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games-!cn.mrs" }
       ],
     },
 };
