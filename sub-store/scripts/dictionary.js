@@ -19,6 +19,7 @@ const dict = {
         "tiktok": `${ICON_BASE}/Social/TikTok-1.png`,
 
         // AI
+        "ai": `${ICON_BASE}/AI/AI.png`,
         "chatgpt": `${ICON_BASE}/AI/OpenAI-1.png`,
         "openai": `${ICON_BASE}/AI/OpenAI-1.png`,
         "claude": `${ICON_BASE}/AI/Anthropic-1.png`,
@@ -26,6 +27,7 @@ const dict = {
         "copilot": `${ICON_BASE}/AI/Copilot-1.png`,
         "perplexity": `${ICON_BASE}/AI/Perplexity.png`,
         "gemini": `${ICON_BASE}/Google/Gemini.png`,
+        "deepseek": `${ICON_BASE}/AI/DeepSeek.png`,
 
         // 影音 / 流媒体 Media & Music
         "netflix": `${ICON_BASE}/Media/Netflix-1.png`,
@@ -44,6 +46,7 @@ const dict = {
         "microsoft": `${ICON_BASE}/Microsoft/Microsoft-1.png`,
         "bing": `${ICON_BASE}/Microsoft/Bing-1.png`,
         "onedrive": `${ICON_BASE}/Microsoft/OneDrive.png`,
+        "apple": `${ICON_BASE}/Apple/Apple.png`,
 
         // 支付 / 金融 Payment
         "paypal": `${ICON_BASE}/Payment/PayPal-1.png`,
@@ -62,6 +65,8 @@ const dict = {
         "speedtest": `${ICON_BASE}/Tool/Speedtest-1.png`,
 
         // 游戏 Game
+        "game": `${ICON_BASE}/Game/Game-1.png`,
+        "games": `${ICON_BASE}/Game/Game-1.png`,
         "steam": `${ICON_BASE}/Game/Steam-1.png`,
         "xbox": `${ICON_BASE}/Game/Xbox.png`,
         "playstation": `${ICON_BASE}/Game/PlayStation-1.png`,
