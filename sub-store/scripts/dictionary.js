@@ -145,7 +145,7 @@ const dict = {
         { key: "telegram_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs" },
         { key: "telegram_ipcidr", behavior: "ipcidr", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs" },
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs", noResolve: true },
       ],
     },
 };
