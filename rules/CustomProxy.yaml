@@ -1,5 +1,6 @@
 # 
 payload:
+  - DOMAIN,ip.jadelive.top
   - DOMAIN-SUFFIX,vps000.com
   - DOMAIN-SUFFIX,canva.com
   - DOMAIN-SUFFIX,deepl.com
