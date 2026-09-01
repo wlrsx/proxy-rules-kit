@@ -129,7 +129,7 @@ const dict = {
       ],
       "TikTok-Bypass": [
         { key: "tiktok_bypass", kind: "domain", behavior: "domain", format: "yaml",
-          url: "https://cdn.jsdelivr.net/gh/wlrsx/clash-rules-lite@refs/heads/main/rules/TikTok_Bypass.list" }
+          url: "https://raw.githubusercontent.com/wlrsx/proxy-rules-kit/refs/heads/main/rules/TikTok/TikTok-Bypass.yaml" }
       ],
       "Whatsapp": [
         { key: "whatsapp_domain", kind: "domain", behavior: "domain", format: "mrs",
