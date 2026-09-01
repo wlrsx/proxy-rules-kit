@@ -41,7 +41,7 @@ const dict = {
         "tidal": `${ICON_BASE}/Music/TIDAL-1.png`,
 
         // Google / Microsoft
-        "google": `${ICON_BASE}/Google/Google-1.png`,
+        "google": `${ICON_BASE}/Google/Google-2.png`,
         "gmail": `${ICON_BASE}/Google/Gmail.png`,
         "microsoft": `${ICON_BASE}/Microsoft/Microsoft-1.png`,
         "bing": `${ICON_BASE}/Microsoft/Bing-1.png`,
