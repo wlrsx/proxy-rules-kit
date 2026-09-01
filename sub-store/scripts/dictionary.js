@@ -129,7 +129,7 @@ const dict = {
           url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/CustomProxy.yaml" }
       ],
       "TikTok-Bypass": [
-        { key: "tiktok_bypass", behavior: "domain", format: "yaml",
+        { key: "tiktok_bypass", behavior: "classical", format: "yaml",
           url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/TikTok/TikTok-Bypass.yaml" }
       ],
       "TikTok": [
