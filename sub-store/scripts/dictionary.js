@@ -119,6 +119,10 @@ const dict = {
         { code: "NG", icon: `${FLAG_ICON_BASE}/ng.svg`, filter: "(?i)(🇳🇬|\\bNG\\b|Nigeria|尼日利亚|尼日利亞|拉各斯|拉各斯|Lagos)" }
     ],
     appRules: {
+      "CustomProxy": [
+        { key: "customproxy_domain", behavior: "domain", format: "yaml",
+          url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/CustomProxy.yaml" }
+      ],
       "AI": [
         { key: "ai_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs" }
