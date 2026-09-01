@@ -4,19 +4,19 @@ const FLAG_ICON_BASE = "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-ver
 const dict = {
     appIcons: {
         // 即时通讯 / 社交 Social
-        "whatsapp": `${ICON_BASE}/Social/WhatsApp-1.png`,
-        "telegram": `${ICON_BASE}/Social/Telegram-1.png`,
-        "discord": `${ICON_BASE}/Social/Discord-1.png`,
+        "whatsapp": `${ICON_BASE}/Social/WhatsApp.png`,
+        "telegram": `${ICON_BASE}/Social/Telegram-2.png`,
+        "discord": `${ICON_BASE}/Social/Discord.png`,
         "facebook": `${ICON_BASE}/Social/Facebook-1.png`,
-        "instagram": `${ICON_BASE}/Social/Instagram-1.png`,
+        "instagram": `${ICON_BASE}/Social/Instagram.png`,
         "messenger": `${ICON_BASE}/Social/Messenger.png`,
-        "reddit": `${ICON_BASE}/Social/Reddit-1.png`,
-        "twitter": `${ICON_BASE}/Social/X-1.png`,
-        "x-twitter": `${ICON_BASE}/Social/X-1.png`,
-        "threads": `${ICON_BASE}/Social/Threads-1.png`,
+        "reddit": `${ICON_BASE}/Social/Reddit.png`,
+        "twitter": `${ICON_BASE}/Social/X.png`,
+        "x-twitter": `${ICON_BASE}/Social/X.png`,
+        "threads": `${ICON_BASE}/Social/Threads.png`,
         "line": `${ICON_BASE}/Social/Line.png`,
-        "wechat": `${ICON_BASE}/Social/WeChat-1.png`,
-        "tiktok": `${ICON_BASE}/Social/TikTok-1.png`,
+        "wechat": `${ICON_BASE}/Social/WeChat.png`,
+        "tiktok": `${ICON_BASE}/Social/TikTok.png`,
 
         // AI
         "ai": `${ICON_BASE}/AI/AI.png`,
@@ -30,13 +30,13 @@ const dict = {
         "deepseek": `${ICON_BASE}/AI/DeepSeek.png`,
 
         // 影音 / 流媒体 Media & Music
-        "netflix": `${ICON_BASE}/Media/Netflix-1.png`,
+        "netflix": `${ICON_BASE}/Media/Netflix.png`,
         "disney": `${ICON_BASE}/Media/Disney-Plus-1.png`,
-        "hbo": `${ICON_BASE}/Media/HBO-1.png`,
+        "hbo": `${ICON_BASE}/Media/HBO-4.png`,
         "hulu": `${ICON_BASE}/Media/Hulu.png`,
-        "primevideo": `${ICON_BASE}/Media/PrimeVideo-1.png`,
-        "prime video": `${ICON_BASE}/Media/PrimeVideo-1.png`,
-        "youtube": `${ICON_BASE}/Media/YouTube-1.png`,
+        "primevideo": `${ICON_BASE}/Media/PrimeVideo.png`,
+        "prime video": `${ICON_BASE}/Media/PrimeVideo.png`,
+        "youtube": `${ICON_BASE}/Google/YouTube.png`,
         "spotify": `${ICON_BASE}/Music/Spotify-1.png`,
         "tidal": `${ICON_BASE}/Music/TIDAL-1.png`,
 
