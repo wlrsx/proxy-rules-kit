@@ -152,7 +152,7 @@ const dict = {
         { key: "google_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs" },
         { key: "google_ipcidr", behavior: "ipcidr", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs" },
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs", noResolve: true },
       ],
        "Microsoft": [
         { key: "microsoft_domain", behavior: "domain", format: "mrs",
@@ -166,7 +166,7 @@ const dict = {
         { key: "facebook_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs" },
         { key: "facebook_ipcidr", behavior: "ipcidr", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/facebook.mrs" },
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/facebook.mrs", noResolve: true },
       ],
       "Instagram": [
         { key: "instagram_domain", behavior: "domain", format: "mrs",
