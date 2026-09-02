@@ -2,10 +2,10 @@ payload:
   - www.tiktok.com
   - us.tiktok.com
   - web-sg.tiktok.com
-  - mssdk-sg.tiktok.com
-  - libraweb-sg.tiktok.com
-  - im-ws-sg.tiktok.com
-  - mcs-sg.tiktokv.com
-  - v16-webapp.tiktok.com
+  # - mcs-sg.tiktokv.com
+  # - mon-sg.tiktokv.com
+  # - mssdk-sg.tiktok.com
+  # - libraweb-sg.tiktok.com
+  # - im-ws-sg.tiktok.com
   - webcast.tiktok.com
   - +.tiktokv.com
