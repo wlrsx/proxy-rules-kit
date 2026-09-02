@@ -1,0 +1,28 @@
+# DNS 配置（redir-host 模式）
+# 配置说明：该 DNS 配置适用于白名单模式，因为配置了 direct-nameserver
+# 何时需要配置 nameserver？ 在匹配到 IP 规则时没有配置 no-resolve 时，会进行 DNS 解析
+# 
+dns:
+  enable: true
+  cache-algorithm: lru   # DNS 缓存算法
+  listen: "[::]:1053"
+  ipv6: false
+  respect-rules: true   # dns 连接遵守路由规则
+  enhanced-mode: redir-host
+  default-nameserver:
+    - 223.5.5.5        # 阿里 DNS
+    - 119.29.29.29     # 腾讯 DNS
+    - 114.114.114.114  # 114 DNS
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query#DIRECT # 阿里 DoH
+    - https://doh.pub/dns-query#DIRECT        # 腾讯 DoH
+    # 如果你的网络环境对 DoH 干扰严重，可以退回使用标准 UDP 协议：
+    # - 223.5.5.5      # 阿里 DNS
+    # - 119.29.29.29   # 腾讯 DNS
+  direct-nameserver:
+    - system
+    - 223.5.5.5        # 阿里 DNS
+    - 119.29.29.29     # 腾讯 DNS
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query

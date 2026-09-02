@@ -112,11 +112,15 @@ Object.entries(appRules).forEach(([groupName, providers]) => {
 const newRuleLines = [...domainLines, ...ipLines];
 
 if (newRuleLines.length) {
-    // 插在 GEOSITE,cn（或 MATCH）之前，保持和手写规则相同的优先级层级
-    let anchorIndex = config.rules.findIndex(r => /^GEOSITE,/i.test(r));
+    // 【核心修复】精准定位到“大陆直连规则块”的开头，忽略 GEOSITE,private
+    let anchorIndex = config.rules.findIndex(r => /^(?:GEOSITE|GEOIP),(?:cn|microsoft@cn|apple-cn|steam@cn)/i.test(r));
+    
+    // 如果没写大陆规则，就找 MATCH 兜底
     if (anchorIndex === -1) {
         anchorIndex = config.rules.findIndex(r => /^MATCH,/i.test(r));
     }
+    
+    // 插入规则
     if (anchorIndex === -1) {
         config.rules.push(...newRuleLines);
     } else {
