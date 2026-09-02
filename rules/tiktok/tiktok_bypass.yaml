@@ -4,6 +4,7 @@ payload:
   - web-sg.tiktok.com
   - mssdk-sg.tiktok.com
   - libraweb-sg.tiktok.com
+  - im-ws-sg.tiktok.com
   - mcs-sg.tiktokv.com
   - webcast.tiktok.com
   - +.tiktokv.com
