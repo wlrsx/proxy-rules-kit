@@ -1,15 +1,8 @@
-# NAME: TikTok_Bypass
-# AUTHOR: wlrsx
-# REPO: https://github.com/wlrsx/clash-rules-lite
 payload:
-#  - DOMAIN,www.tiktok.com
-#  - DOMAIN,webcast.tiktok.com
-#  - DOMAIN-SUFFIX,tiktokv.com
-#  - DOMAIN-SUFFIX,akamai.net
-#  - DOMAIN-SUFFIX,akamaiedge.net
-#  - DOMAIN-SUFFIX,akadns.net
-#  - DOMAIN-WILDCARD,*.www.tiktok.com
+  - tiktok.com
   - www.tiktok.com
+  - us.tiktok.com
+  - web-sg.tiktok.com
   - webcast.tiktok.com
   - +.tiktokv.com
   - +.akamai.net
