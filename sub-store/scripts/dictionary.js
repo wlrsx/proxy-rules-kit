@@ -77,6 +77,7 @@ const dict = {
     countryRegions: [
         // ================= 亚洲 (Asia) =================
         { code: "HK", icon: `${FLAG_ICON_BASE}/hk.svg`, filter: "(?i)(🇭🇰|\\bHK\\b|Hong\\sKong|香港|香港|九龙|九龍|Kowloon)" },
+        { code: "MO", icon: `${FLAG_ICON_BASE}/mo.svg`, filter: "(?i)(🇲🇴|\\bMO\\b|Macau|Macao|澳门|澳門)" },
         { code: "TW", icon: `${FLAG_ICON_BASE}/tw.svg`, filter: "(?i)(🇹🇼|\\bTW\\b|Taiwan|台湾|台灣|台北|臺北|Taipei)" },
         { code: "SG", icon: `${FLAG_ICON_BASE}/sg.svg`, filter: "(?i)(🇸🇬|\\bSG\\b|Singapore|新加坡|新加坡|狮城|獅城|Lion\\sCity)" },
         { code: "JP", icon: `${FLAG_ICON_BASE}/jp.svg`, filter: "(?i)(🇯🇵|\\bJP\\b|Japan|日本|日本|东京|東京|Tokyo)" },
@@ -130,11 +131,13 @@ const dict = {
       ],
       "TikTok-Bypass": [
         { key: "tiktok_bypass", behavior: "domain", format: "mrs",
-          url: "https://raw.githubusercontent.com/wlrsx/proxy-rules-kit/refs/heads/main/rules/tiktok/tiktok_bypass.mrs" }
+          url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok_bypass.mrs" }
       ],
       "TikTok": [
         { key: "tiktok_domain", behavior: "domain", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs" }
+          url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok.mrs" },
+        // { key: "tiktok_domain", behavior: "domain", format: "mrs",
+        //   url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs" }
       ],
       "AI": [
         { key: "ai_domain", behavior: "domain", format: "mrs",
@@ -174,7 +177,11 @@ const dict = {
       ],
       "X": [
         { key: "x_domain", behavior: "domain", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/x.mrs" }
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/x.mrs" },
+        { key: "twitter_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs" },
+        { key: "twitter_ipcidr", behavior: "ipcidr", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs", noResolve: true },
       ],
       "Reddit": [
         { key: "reddit_domain", behavior: "domain", format: "mrs",
