@@ -1,70 +1,106 @@
-# TikTok OpenClash 规则集
+# TikTok / 字节跳动 domain-set 规则集
+# 说明：
+# 1. "+." 开头 = 后缀匹配（含子域名），不带前缀 = 精确匹配单一域名
+# 2. domain-set 格式不支持关键词匹配，原 DOMAIN-KEYWORD 规则改为注释保留提示：
+#    - 原关键词: bytedance / musical.ly / tiktok
+#    - 如需关键词匹配，请在客户端另用 RULE-SET 或 DOMAIN-KEYWORD 单独声明
+# 3. 文末「第三方 CDN / SDK 厂商域名」为 TikTok 调用/租用的第三方基础设施，非字节跳动自有
+# 4. [新增] 标记为本次新加入的域名
+
 payload:
-  # >>> 关键词匹配 <<<
-  - DOMAIN-KEYWORD,bytedance
-  - DOMAIN-KEYWORD,musical.ly
-  - DOMAIN-KEYWORD,tiktok
+  # >>> 完全匹配（字节跳动自有） <<<
+  - lf16-effectcdn.byteeffecttos-g.com
+  - lf16-pkgcdn.pitaya-clientai.com
 
-  # >>> 完全匹配 <<<
-  - DOMAIN,lf16-effectcdn.byteeffecttos-g.com
-  - DOMAIN,lf16-pkgcdn.pitaya-clientai.com
-  - DOMAIN,p16-tiktokcdn-com.akamaized.net
-  - DOMAIN,pull-fcdn-ttp2.s.worldfcdn2.com
-  - DOMAIN,tiktok-webrtc.liveplay.myqcloud.com
-  - DOMAIN,trae-api-sg.mchost.guru
+  # >>> 后缀/子域名匹配（字节跳动/TikTok 自有） <<<
+  - +.bytedapm.com
+  - +.bytefcdn-ttpeu.com
+  - +.bytegecko-i18n.com
+  - +.bytegecko.com
+  - +.byteglb.com
+  - +.byteintlapi.com
+  - +.byteoversea.com
+  - +.byteoversea.net
+  - +.capcut.com
+  - +.douyincdn.com
+  - +.fcdnstatic-intl.com
+  - +.fdmimgs.com
+  - +.fdmstatic.com
+  - +.ibytedtos.com
+  - +.ibyteimg.com
+  - +.ifdmimgs.com
+  - +.ipstatp.com
+  - +.isnssdk.com
+  - +.marscode.com
+  - +.muscdn.com
+  - +.musical.ly
+  - +.ovscdns.net
+  - +.sgpstatp.com
+  - +.snssdk.com
+  - +.tik-tokapi.com
+  - +.tiktok-minis.com          # [新增]
+  - +.tiktok-row.net            # [新增]
+  - +.tiktok.com
+  - +.tiktokcdn-eu.com          # [新增]
+  - +.tiktokcdn-us.com
+  - +.tiktokcdn.com
+  - +.tiktokcdn.com.c.bytefcdn-oversea.com
+  - +.tiktokd.net
+  - +.tiktokd.org
+  - +.tiktokeu-cdn.com          # [新增]
+  - +.tiktokglobalshopv.com     # [新增]
+  - +.tiktokminis.us            # [新增]
+  - +.tiktokmusic.app
+  - +.tiktokrow-cdn.com
+  - +.tiktokv.com
+  - +.tiktokv.eu                # [新增]
+  - +.tiktokv.us
+  - +.tiktokw.eu                # [新增]
+  - +.tiktokw.us                # [新增]
+  - +.trae.ai
+  - +.ttcdn-us.com              # [新增]
+  - +.ttdns2.com
+  - +.ttlivecdn.com
+  - +.ttlstatic.com
+  - +.ttoverseaus.net           # [新增]
+  - +.ttwstatic.com
+  - +.ttwebview.com
 
-  # >>> 后缀/子域名匹配 <<<
-  - DOMAIN-SUFFIX,akadns.net
-  - DOMAIN-SUFFIX,akamai.net
-  - DOMAIN-SUFFIX,akamaiedge.net
-  - DOMAIN-SUFFIX,appsflyersdk.com
-  - DOMAIN-SUFFIX,bytedapm.com
-  - DOMAIN-SUFFIX,bytefcdn-ttpeu.com
-  - DOMAIN-SUFFIX,bytegecko-i18n.com
-  - DOMAIN-SUFFIX,bytegecko.com
-  - DOMAIN-SUFFIX,byteglb.com
-  - DOMAIN-SUFFIX,byteintlapi.com
-  - DOMAIN-SUFFIX,byteoversea.com
-  - DOMAIN-SUFFIX,byteoversea.net
-  - DOMAIN-SUFFIX,capcut.com
-  - DOMAIN-SUFFIX,cdn77.org
-  - DOMAIN-SUFFIX,douyincdn.com
-  - DOMAIN-SUFFIX,fcdnstatic-intl.com
-  - DOMAIN-SUFFIX,fdmimgs.com
-  - DOMAIN-SUFFIX,fdmstatic.com
-  - DOMAIN-SUFFIX,ibytedtos.com
-  - DOMAIN-SUFFIX,ibyteimg.com
-  - DOMAIN-SUFFIX,ifdmimgs.com
-  - DOMAIN-SUFFIX,ipstatp.com
-  - DOMAIN-SUFFIX,isnssdk.com
-  - DOMAIN-SUFFIX,marscode.com
-  - DOMAIN-SUFFIX,muscdn.com
-  - DOMAIN-SUFFIX,musical.ly
-  - DOMAIN-SUFFIX,ovscdns.net
-  - DOMAIN-SUFFIX,sgpstatp.com
-  - DOMAIN-SUFFIX,snapkit.com
-  - DOMAIN-SUFFIX,snssdk.com
-  - DOMAIN-SUFFIX,tik-tokapi.com
-  - DOMAIN-SUFFIX,tiktok.com
-  - DOMAIN-SUFFIX,tiktokcdn-us.com
-  - DOMAIN-SUFFIX,tiktokcdn.com
-  - DOMAIN-SUFFIX,tiktokcdn.com.akamaized.net
-  - DOMAIN-SUFFIX,tiktokcdn.com.atomile.com
-  - DOMAIN-SUFFIX,tiktokcdn.com.c.bytefcdn-oversea.com
-  - DOMAIN-SUFFIX,tiktokcdn.com.qlivecdn.com
-  - DOMAIN-SUFFIX,tiktokcdn.com.rocket-cdn.com
-  - DOMAIN-SUFFIX,tiktokcdn.com.wsdvs.com
-  - DOMAIN-SUFFIX,tiktokcdn-us.com.c.worldfcdn2.com
-  - DOMAIN-SUFFIX,tiktokd.net
-  - DOMAIN-SUFFIX,tiktokd.org
-  - DOMAIN-SUFFIX,tiktokmusic.app
-  - DOMAIN-SUFFIX,tiktokrow-cdn.com
-  - DOMAIN-SUFFIX,tiktokv.com
-  - DOMAIN-SUFFIX,tiktokv.us
-  - DOMAIN-SUFFIX,trae.ai
-  - DOMAIN-SUFFIX,ttdns2.com
-  - DOMAIN-SUFFIX,ttlivecdn.com
-  - DOMAIN-SUFFIX,ttlivecdn.com.c.cworldfcdn.com
-  - DOMAIN-SUFFIX,ttlstatic.com
-  - DOMAIN-SUFFIX,ttwstatic.com
-  - DOMAIN-SUFFIX,ttwebview.com
+  # >>> 第三方 CDN / SDK 厂商域名（非字节跳动自有，仅为 TikTok 调用/租用的基础设施） <<<
+
+  # --- Akamai（第三方 CDN） ---
+  - +.akadns.net
+  - +.akamai.net
+  - +.akamaiedge.net
+  - +.tiktokcdn.com.akamaized.net
+  - p16-tiktokcdn-com.akamaized.net
+  - +.tiktokcdn-us.com.edgesuite.net   # [新增]
+  - +.tiktokcdn.com.edgesuite.net      # [新增]
+  - +.tiktokv.com.edgekey.net          # [新增]
+  - +.tiktokv.com.edgesuite.net        # [新增]
+
+  # --- AppsFlyer（第三方移动归因/分析 SDK，非 TikTok 专属） ---
+  - +.appsflyersdk.com
+  - roovza-launches.appsflyersdk.com        # [新增]
+  - roovza.inapps.appsflyersdk.com          # [新增]
+  - roovza.launches.appsflyersdk.com        # [新增]
+  - roovza.skadsdk.appsflyersdk.com         # [新增]
+
+  # --- CDN77（第三方 CDN） ---
+  - +.cdn77.org
+
+  # --- Snap Inc.（Snapchat，与字节跳动无直接归属关系，收录存疑） ---
+  - +.snapkit.com
+
+  # --- 腾讯云 Tencent Cloud ---
+  - tiktok-webrtc.liveplay.myqcloud.com
+
+  # --- 其他第三方 CDN 中转别名（域名主体归属未完全核实，仅供参考） ---
+  - +.tiktokcdn.com.atomile.com
+  - +.tiktokcdn.com.qlivecdn.com
+  - +.tiktokcdn.com.rocket-cdn.com
+  - +.tiktokcdn.com.wsdvs.com
+  - +.tiktokcdn-us.com.c.worldfcdn2.com
+  - +.ttlivecdn.com.c.cworldfcdn.com
+  - pull-fcdn-ttp2.s.worldfcdn2.com
+  - trae-api-sg.mchost.guru

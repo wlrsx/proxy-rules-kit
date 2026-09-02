@@ -1,0 +1,109 @@
+# TikTok / 字节跳动 OpenClash 规则集
+# 说明：
+# 1. 关键词/完全匹配/后缀匹配三段为字节跳动、TikTok 自有或专属域名
+# 2. 文末「第三方 CDN / SDK 厂商域名」为 TikTok 业务调用或租用的第三方基础设施，
+#    域名注册主体并非字节跳动，是否保留请自行评估
+# 3. 新增域名已用行内注释标出 [新增]
+
+payload:
+  # >>> 关键词匹配 <<<
+  - DOMAIN-KEYWORD,bytedance
+  - DOMAIN-KEYWORD,musical.ly
+  - DOMAIN-KEYWORD,tiktok
+
+  # >>> 完全匹配（字节跳动自有）<<<
+  - DOMAIN,lf16-effectcdn.byteeffecttos-g.com
+  - DOMAIN,lf16-pkgcdn.pitaya-clientai.com
+
+  # >>> 后缀/子域名匹配（字节跳动/TikTok 自有）<<<
+  - DOMAIN-SUFFIX,bytedapm.com
+  - DOMAIN-SUFFIX,bytefcdn-ttpeu.com
+  - DOMAIN-SUFFIX,bytegecko-i18n.com
+  - DOMAIN-SUFFIX,bytegecko.com
+  - DOMAIN-SUFFIX,byteglb.com
+  - DOMAIN-SUFFIX,byteintlapi.com
+  - DOMAIN-SUFFIX,byteoversea.com
+  - DOMAIN-SUFFIX,byteoversea.net
+  - DOMAIN-SUFFIX,capcut.com
+  - DOMAIN-SUFFIX,douyincdn.com
+  - DOMAIN-SUFFIX,fcdnstatic-intl.com
+  - DOMAIN-SUFFIX,fdmimgs.com
+  - DOMAIN-SUFFIX,fdmstatic.com
+  - DOMAIN-SUFFIX,ibytedtos.com
+  - DOMAIN-SUFFIX,ibyteimg.com
+  - DOMAIN-SUFFIX,ifdmimgs.com
+  - DOMAIN-SUFFIX,ipstatp.com
+  - DOMAIN-SUFFIX,isnssdk.com
+  - DOMAIN-SUFFIX,marscode.com
+  - DOMAIN-SUFFIX,muscdn.com
+  - DOMAIN-SUFFIX,musical.ly
+  - DOMAIN-SUFFIX,ovscdns.net
+  - DOMAIN-SUFFIX,sgpstatp.com
+  - DOMAIN-SUFFIX,snssdk.com
+  - DOMAIN-SUFFIX,tik-tokapi.com
+  - DOMAIN-SUFFIX,tiktok-minis.com          # [新增]
+  - DOMAIN-SUFFIX,tiktok-row.net            # [新增]
+  - DOMAIN-SUFFIX,tiktok.com
+  - DOMAIN-SUFFIX,tiktokcdn-eu.com          # [新增]
+  - DOMAIN-SUFFIX,tiktokcdn-us.com
+  - DOMAIN-SUFFIX,tiktokcdn.com
+  - DOMAIN-SUFFIX,tiktokcdn.com.c.bytefcdn-oversea.com
+  - DOMAIN-SUFFIX,tiktokd.net
+  - DOMAIN-SUFFIX,tiktokd.org
+  - DOMAIN-SUFFIX,tiktokeu-cdn.com          # [新增]
+  - DOMAIN-SUFFIX,tiktokglobalshopv.com     # [新增]
+  - DOMAIN-SUFFIX,tiktokminis.us            # [新增]
+  - DOMAIN-SUFFIX,tiktokmusic.app
+  - DOMAIN-SUFFIX,tiktokrow-cdn.com
+  - DOMAIN-SUFFIX,tiktokv.com
+  - DOMAIN-SUFFIX,tiktokv.eu                # [新增]
+  - DOMAIN-SUFFIX,tiktokv.us
+  - DOMAIN-SUFFIX,tiktokw.eu                # [新增]
+  - DOMAIN-SUFFIX,tiktokw.us                # [新增]
+  - DOMAIN-SUFFIX,trae.ai
+  - DOMAIN-SUFFIX,ttcdn-us.com              # [新增]
+  - DOMAIN-SUFFIX,ttdns2.com
+  - DOMAIN-SUFFIX,ttlivecdn.com
+  - DOMAIN-SUFFIX,ttlstatic.com
+  - DOMAIN-SUFFIX,ttoverseaus.net           # [新增]
+  - DOMAIN-SUFFIX,ttwstatic.com
+  - DOMAIN-SUFFIX,ttwebview.com
+
+  # >>> 第三方 CDN / SDK 厂商域名（非字节跳动自有，仅为 TikTok 调用/租用的基础设施） <<<
+
+  # --- Akamai（第三方 CDN） ---
+  - DOMAIN-SUFFIX,akadns.net
+  - DOMAIN-SUFFIX,akamai.net
+  - DOMAIN-SUFFIX,akamaiedge.net
+  - DOMAIN-SUFFIX,tiktokcdn.com.akamaized.net
+  - DOMAIN,p16-tiktokcdn-com.akamaized.net
+  - DOMAIN-SUFFIX,tiktokcdn-us.com.edgesuite.net   # [新增]
+  - DOMAIN-SUFFIX,tiktokcdn.com.edgesuite.net      # [新增]
+  - DOMAIN-SUFFIX,tiktokv.com.edgekey.net          # [新增]
+  - DOMAIN-SUFFIX,tiktokv.com.edgesuite.net        # [新增]
+
+  # --- AppsFlyer（第三方移动归因/分析 SDK，非 TikTok 专属） ---
+  - DOMAIN-SUFFIX,appsflyersdk.com
+  - DOMAIN,roovza-launches.appsflyersdk.com        # [新增]
+  - DOMAIN,roovza.inapps.appsflyersdk.com          # [新增]
+  - DOMAIN,roovza.launches.appsflyersdk.com        # [新增]
+  - DOMAIN,roovza.skadsdk.appsflyersdk.com         # [新增]
+
+  # --- CDN77（第三方 CDN） ---
+  - DOMAIN-SUFFIX,cdn77.org
+
+  # --- Snap Inc.（Snapchat，与字节跳动无直接归属关系，收录存疑） ---
+  - DOMAIN-SUFFIX,snapkit.com
+
+  # --- 腾讯云 Tencent Cloud ---
+  - DOMAIN,tiktok-webrtc.liveplay.myqcloud.com
+
+  # --- 其他第三方 CDN 中转别名（域名主体归属未完全核实，仅供参考） ---
+  - DOMAIN-SUFFIX,tiktokcdn.com.atomile.com
+  - DOMAIN-SUFFIX,tiktokcdn.com.qlivecdn.com
+  - DOMAIN-SUFFIX,tiktokcdn.com.rocket-cdn.com
+  - DOMAIN-SUFFIX,tiktokcdn.com.wsdvs.com
+  - DOMAIN-SUFFIX,tiktokcdn-us.com.c.worldfcdn2.com
+  - DOMAIN-SUFFIX,ttlivecdn.com.c.cworldfcdn.com
+  - DOMAIN,pull-fcdn-ttp2.s.worldfcdn2.com
+  - DOMAIN,trae-api-sg.mchost.guru
