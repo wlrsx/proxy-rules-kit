@@ -130,7 +130,7 @@ const dict = {
       ],
       "TikTok-Bypass": [
         { key: "tiktok_bypass", behavior: "domain", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/TikTok/TikTok-Bypass.mrs" }
+          url: "https://raw.githubusercontent.com/wlrsx/proxy-rules-kit/refs/heads/main/rules/tiktok/tiktok_bypass.mrs" }
       ],
       "TikTok": [
         { key: "tiktok_domain", behavior: "domain", format: "mrs",
