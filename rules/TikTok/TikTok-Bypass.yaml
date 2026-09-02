@@ -2,10 +2,16 @@
 # AUTHOR: wlrsx
 # REPO: https://github.com/wlrsx/clash-rules-lite
 payload:
-  - DOMAIN,www.tiktok.com
-  - DOMAIN,webcast.tiktok.com
-  - DOMAIN-SUFFIX,tiktokv.com
-  - DOMAIN-SUFFIX,akamai.net
-  - DOMAIN-SUFFIX,akamaiedge.net
-  - DOMAIN-SUFFIX,akadns.net
+#  - DOMAIN,www.tiktok.com
+#  - DOMAIN,webcast.tiktok.com
+#  - DOMAIN-SUFFIX,tiktokv.com
+#  - DOMAIN-SUFFIX,akamai.net
+#  - DOMAIN-SUFFIX,akamaiedge.net
+#  - DOMAIN-SUFFIX,akadns.net
 #  - DOMAIN-WILDCARD,*.www.tiktok.com
+  - www.tiktok.com
+  - webcast.tiktok.com
+  - +.tiktokv.com
+  - +.akamai.net
+  - +.akamaiedge.net
+  - +.akadns.net
