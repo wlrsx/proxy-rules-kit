@@ -67,6 +67,9 @@ DOMAIN-SUFFIX,ttoverseaus.net
 DOMAIN-SUFFIX,ttwstatic.com
 DOMAIN-SUFFIX,ttwebview.com
 
+# 印尼 TikTok 商城
+DOMAIN-SUFFIX,tokopediax.com
+
 # 第三方 CDN TikTok 专属别名（安全代理）
 DOMAIN-SUFFIX,tiktokcdn.com.akamaized.net
 DOMAIN-SUFFIX,tiktokcdn.com.atomile.com
