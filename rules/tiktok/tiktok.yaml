@@ -66,6 +66,9 @@ payload:
   - +.ttwstatic.com
   - +.ttwebview.com
 
+  # 印尼 TikTok 商城
+  - +.tokopediax.com
+
   # >>> 第三方 CDN / SDK 厂商域名（非字节跳动自有，仅为 TikTok 调用/租用的基础设施） <<<
 
   # --- Akamai（第三方 CDN） ---
