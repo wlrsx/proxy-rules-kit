@@ -1,4 +1,8 @@
-// ========================= AutoCountryGroups + AutoAppGroups + AutoAppRules =========================
+// ============================================================================
+// Script: 地区分组与规则智能注入引擎
+// Description: 自动探测节点地区并生成对应策略组，智能拼接应用组，并动态插入 Rule-Providers。
+//              AutoCountryGroups + AutoAppGroups + AutoAppRules
+// ============================================================================
 
 const targetGroupName = (typeof $arguments !== 'undefined' && $arguments.defGroupName)
     ? $arguments.defGroupName
@@ -112,7 +116,7 @@ Object.entries(appRules).forEach(([groupName, providers]) => {
 const newRuleLines = [...domainLines, ...ipLines];
 
 if (newRuleLines.length) {
-    // 【核心修复】精准定位到“大陆直连规则块”的开头，忽略 GEOSITE,private
+    // 精准定位到“大陆直连规则块”的开头，忽略 GEOSITE,private
     let anchorIndex = config.rules.findIndex(r => /^(?:GEOSITE|GEOIP),(?:cn|microsoft@cn|apple-cn|steam@cn)/i.test(r));
     
     // 如果没写大陆规则，就找 MATCH 兜底

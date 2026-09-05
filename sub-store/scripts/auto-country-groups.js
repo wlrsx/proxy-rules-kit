@@ -1,3 +1,4 @@
+// 推荐使用 auto-country-app-groups.js
 // AutoCountryGroups：探测 proxies 中出现的国家，自动生成 "故障转移/自动延迟/负载均衡(散列)/负载均衡(轮询)" 四类分组
 
 const targetGroupName = (typeof $arguments !== 'undefined' && $arguments.defGroupName) 

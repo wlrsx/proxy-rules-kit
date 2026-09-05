@@ -1,9 +1,19 @@
+// ============================================================================
+// Script: 云端规则与图标字典 (Proxy Dictionary)
+// Description: 作为公共数据源，集中管理应用图标 (appIcons)、地区映射与正则 (countryRegions)、以及分流规则集 (appRules)。
+// Usage: 专供其他 Sub-Store 或配置处理脚本通过 fetch 动态拉取并解析执行。
+// ============================================================================
+
+// ---------- 图标基础路径定义 ----------
 const ICON_BASE = "https://fastly.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/icons";
 const FLAG_ICON_BASE = "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags";
 
 const dict = {
+    // ==========================================
+    // 1. 应用图标映射 (App Icons)
+    // ==========================================
     appIcons: {
-        // 即时通讯 / 社交 Social
+        // [即时通讯 / 社交 Social]
         "whatsapp": `${ICON_BASE}/Social/WhatsApp.png`,
         "telegram": `${ICON_BASE}/Social/Telegram-2.png`,
         "discord": `${ICON_BASE}/Social/Discord.png`,
@@ -18,7 +28,7 @@ const dict = {
         "wechat": `${ICON_BASE}/Social/WeChat.png`,
         "tiktok": `${ICON_BASE}/Social/TikTok.png`,
 
-        // AI
+        // [人工智能 AI]
         "ai": `${ICON_BASE}/AI/AI.png`,
         "chatgpt": `${ICON_BASE}/AI/OpenAI-1.png`,
         "openai": `${ICON_BASE}/AI/OpenAI-1.png`,
@@ -29,7 +39,7 @@ const dict = {
         "gemini": `${ICON_BASE}/Google/Gemini.png`,
         "deepseek": `${ICON_BASE}/AI/DeepSeek.png`,
 
-        // 影音 / 流媒体 Media & Music
+        // [影音 / 流媒体 Media & Music]
         "netflix": `${ICON_BASE}/Media/Netflix.png`,
         "disney": `${ICON_BASE}/Media/Disney-Plus-1.png`,
         "hbo": `${ICON_BASE}/Media/HBO-4.png`,
@@ -40,7 +50,7 @@ const dict = {
         "spotify": `${ICON_BASE}/Music/Spotify-1.png`,
         "tidal": `${ICON_BASE}/Music/TIDAL-1.png`,
 
-        // Google / Microsoft
+        // [Google / Microsoft / Apple]
         "google": `${ICON_BASE}/Google/Google-2.png`,
         "gmail": `${ICON_BASE}/Google/Gmail.png`,
         "microsoft": `${ICON_BASE}/Microsoft/Microsoft-1.png`,
@@ -48,23 +58,23 @@ const dict = {
         "onedrive": `${ICON_BASE}/Microsoft/OneDrive.png`,
         "apple": `${ICON_BASE}/Apple/Apple.png`,
 
-        // 支付 / 金融 Payment
+        // [支付 / 金融 Payment]
         "paypal": `${ICON_BASE}/Payment/PayPal-1.png`,
         "wise": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Wise_Logo_512x124.svg", // Oasisic-Icons 暂无 Wise，沿用原有来源
         "alipay": `${ICON_BASE}/Payment/AliPay.png`,
 
-        // 云盘 Drive
+        // [云盘 Drive]
         "dropbox": `${ICON_BASE}/Drive/Dropbox-1.png`,
         "googledrive": `${ICON_BASE}/Google/GoogleDrive.png`,
 
-        // 工具 Tool
+        // [工具 / 开发者 Tool]
         "github": `${ICON_BASE}/Tool/GitHub-1.png`,
         "notion": `${ICON_BASE}/Tool/Notion.png`,
         "cloudflare": `${ICON_BASE}/Tool/Cloudflare.png`,
         "1password": `${ICON_BASE}/Tool/1Password.png`,
         "speedtest": `${ICON_BASE}/Tool/Speedtest-1.png`,
 
-        // 游戏 Game
+        // [游戏 Game]
         "game": `${ICON_BASE}/Game/Game-1.png`,
         "games": `${ICON_BASE}/Game/Game-1.png`,
         "steam": `${ICON_BASE}/Game/Steam-1.png`,
@@ -72,8 +82,11 @@ const dict = {
         "playstation": `${ICON_BASE}/Game/PlayStation-1.png`,
         "epicgames": `${ICON_BASE}/Game/EpicGames.png`,
     },
-    // 过滤规则严格排序：
-    // 国旗 | 国家代码 | 国家英文全名 | 简体中文全名 | 繁体中文命名 | 简体城市命名 | 繁体城市命名 | 城市英文全名
+
+    // ==========================================
+    // 2. 国家/地区映射与正则提取规则 (Country & Regions)
+    // 过滤规则匹配顺序（严格）：国旗 | 国家代码 | 国家英文全名 | 简体中文全名 | 繁体中文命名 | 简体城市命名 | 繁体城市命名 | 城市英文全名
+    // ==========================================
     countryRegions: [
         // ================= 亚洲 (Asia) =================
         { code: "HK", icon: `${FLAG_ICON_BASE}/hk.svg`, filter: "(?i)(🇭🇰|\\bHK\\b|Hong\\sKong|香港|香港|九龙|九龍|Kowloon)" },
@@ -124,6 +137,11 @@ const dict = {
         { code: "EG", icon: `${FLAG_ICON_BASE}/eg.svg`, filter: "(?i)(🇪🇬|\\bEG\\b|Egypt|埃及|埃及|开罗|開羅|Cairo)" },
         { code: "NG", icon: `${FLAG_ICON_BASE}/ng.svg`, filter: "(?i)(🇳🇬|\\bNG\\b|Nigeria|尼日利亚|尼日利亞|拉各斯|拉各斯|Lagos)" }
     ],
+
+    // ==========================================
+    // 3. 应用分流规则集 (Rule Providers Configuration)
+    // 匹配的组名指向对应的 Meta-rules-dat 等外部规则文件
+    // ==========================================
     appRules: {
       "CustomProxy": [
         { key: "customproxy_domain", behavior: "domain", format: "yaml",

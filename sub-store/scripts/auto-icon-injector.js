@@ -1,3 +1,8 @@
+// ============================================================================
+// Script: 策略组图标智能补全 (Auto Icon Injector)
+// Description: 动态拉取云端图标字典，通过正则匹配组名，为没有 icon 属性的策略组自动注入对应的应用 (App) 或地区 (Region) 图标。
+// ============================================================================
+
 const DICTIONARY_URL = "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@main/sub-store/scripts/dictionary.js";
 
 // 动态拉取并解析云端字典
