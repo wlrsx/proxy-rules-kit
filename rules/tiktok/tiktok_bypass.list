@@ -2,9 +2,7 @@ DOMAIN,tiktok.com
 DOMAIN,www.tiktok.com
 DOMAIN,webcast.tiktok.com
 DOMAIN-SUFFIX,tiktokv.com
-DOMAIN-SUFFIX,akamai.net
-DOMAIN-SUFFIX,akamaiedge.net
-DOMAIN-SUFFIX,akadns.net
+DOMAIN-SUFFIX,tiktokv.us
 
 # 网页登陆
 DOMAIN,us.tiktok.com
