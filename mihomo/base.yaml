@@ -1,0 +1,91 @@
+# 全局配置
+log-level: warning
+mode: rule
+global-ua: clash.meta
+ipv6: false
+unified-delay: true   # 统一延迟
+tcp-concurrent: true  # TCP 并发
+
+# 外部控制配置
+external-ui: ui
+external-ui-name: zashboard
+external-ui-url: "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
+external-controller: "[::]:9090"
+secret: ""
+
+profile:
+  store-selected: true
+  store-fake-ip: true  # Fake-IP 缓存
+
+# 入站配置
+allow-lan: true
+port: 8080
+socks-port: 1080
+mixed-port: 7890
+bind-address: "*"
+
+# 嗅探器配置
+sniffer:
+  enable: true
+  ## 对所有未获取到域名的流量进行强制嗅探
+  parse-pure-ip: true
+  ## 是否使用嗅探结果作为实际访问，默认为 true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+  - Mijia Cloud
+  - dlg.io.mi.com
+  - "+.push.apple.com"
+
+# GeoX 配置
+geodata-mode: true       # true为 dat，false为 mmdb
+geodata-loader: standard # standard 标准加载器，memconservative 专为内存受限 (小内存) 设备优化的加载器 (默认值)
+geox-url:                # https://github.com/MetaCubeX/meta-rules-dat
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
+geo-auto-update: true
+geo-update-interval: 24  # 单位：小时
+
+proxy-groups:
+  - {name: AI, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港|香港|九龙|九龍|Kowloon), include-all: true }
+  - {name: DeepSeek, include-all: true}
+  - {name: TikTok-Bypass, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港|香港|九龙|九龍|Kowloon), include-all: true }
+  - {name: TikTok, include-all: true}
+  - {name: Whatsapp, include-all: true}
+  - {name: YouTube, include-all: true}
+  - {name: Google, include-all: true}
+  - {name: Facebook, include-all: true}
+  - {name: Telegram, include-all: true}
+rules:
+  - GEOSITE,private,DIRECT
+  - GEOIP,private,DIRECT,no-resolve
+
+  - DOMAIN,ip.jadelive.top,默认代理
+  - DOMAIN-SUFFIX,vps000.com,默认代理
+
+  - DOMAIN-WILDCARD,*.jsdelivr.net,DIRECT
+  - DOMAIN,d.metacubex.one,DIRECT
+  - DOMAIN,board.zash.run.place,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - DOMAIN-SUFFIX,jadelive.top,DIRECT
+  - DOMAIN-SUFFIX,0758007.xyz,DIRECT
+
+  - GEOSITE,microsoft@cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,steam@cn,DIRECT
+  # - GEOSITE,private,DIRECT
+  - GEOSITE,cn,DIRECT
+  
+  # - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,cn,DIRECT,no-resolve
+  - MATCH,默认代理
