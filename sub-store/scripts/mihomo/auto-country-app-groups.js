@@ -10,7 +10,7 @@ const targetGroupName = (typeof $arguments !== 'undefined' && $arguments.defGrou
 
 // ---------- 0. 拉取云端字典 ----------
 // const DICTIONARY_URL = "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@main/sub-store/scripts/dictionary.js";
-const DICTIONARY_URL = "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/sub-store/mihomo/scripts/dictionary.js";
+const DICTIONARY_URL = "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/sub-store/scripts/mihomo/dictionary.js";
 const dictCode = await fetch(DICTIONARY_URL).then(res => res.text());
 const dict = new Function(dictCode)();
 
