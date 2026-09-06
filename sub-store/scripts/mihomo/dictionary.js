@@ -215,6 +215,10 @@ const dict = {
         { key: "games_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games-!cn.mrs" }
       ],
+      "Ads": [
+        { key: "ads_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads.mrs" }
+      ],
     },
 };
 

@@ -65,6 +65,7 @@ proxy-groups:
   - {name: Google, include-all: true}
   - {name: Facebook, include-all: true}
   - {name: Telegram, include-all: true}
+  - {name: Ads, proxies: ["REJECT", "默认代理"]}
 rules:
   - GEOSITE,private,DIRECT
   - GEOIP,private,DIRECT,no-resolve
