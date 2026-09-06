@@ -217,7 +217,11 @@ const dict = {
       ],
       "Ads": [
         { key: "ads_domain", behavior: "domain", format: "mrs",
-          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads.mrs" }
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads.mrs" },
+
+        // https://github.com/privacy-protection-tools/anti-AD
+        { key: "anti-ad-clash", behavior: "domain", format: "yaml",
+          url: "https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-clash.yaml" },
       ],
     },
 };
