@@ -1,6 +1,5 @@
-# DNS 配置（redir-host 模式）
-# 配置说明：该 DNS 配置适用于白名单模式，因为配置了 direct-nameserver
-# 何时需要配置 nameserver？ 在匹配到 IP 规则时没有配置 no-resolve 时，会进行 DNS 解析
+# DNS 配置（fake-ip 模式）
+#
 # 
 dns:
   enable: true
@@ -8,7 +7,14 @@ dns:
   listen: "[::]:1053"
   ipv6: false
   respect-rules: true   # dns 连接遵守路由规则
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  # fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "*.lan"
+    - "geosite:connectivity-check"
+    - "geosite:private"
   default-nameserver:
     - 223.5.5.5        # 阿里 DNS
     - 119.29.29.29     # 腾讯 DNS

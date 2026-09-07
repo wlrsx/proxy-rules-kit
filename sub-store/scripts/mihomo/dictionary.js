@@ -232,8 +232,12 @@ const dict = {
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads.mrs" },
 
         // https://github.com/privacy-protection-tools/anti-AD
-        { key: "anti-ad-clash", behavior: "domain", format: "yaml",
+        { key: "anti_ad_domain", behavior: "domain", format: "yaml",
           url: "https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-clash.yaml" },
+
+        // https://github.com/loyalsoldier/v2ray-rules-dat
+        { key: "reject_domain", behavior: "domain", format: "text",
+          url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/reject-list.txt" },
       ],
     },
 };
