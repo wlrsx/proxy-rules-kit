@@ -201,6 +201,18 @@ const dict = {
         { key: "twitter_ipcidr", behavior: "ipcidr", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs", noResolve: true },
       ],
+      "Twitter": [
+        { key: "twitter_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/x.mrs" },
+        { key: "twitter_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs" },
+        { key: "twitter_ipcidr", behavior: "ipcidr", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs", noResolve: true },
+      ],
+      "Netflix": [
+        { key: "netflix_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs" }
+      ],
       "Reddit": [
         { key: "reddit_domain", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/reddit.mrs" }
