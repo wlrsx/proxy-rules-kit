@@ -3,7 +3,7 @@ proxy-groups:
   - {name: DeepSeek, include-all: true}
   - {name: TikTok-Bypass, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港|香港|九龙|九龍|Kowloon), include-all: true }
   - {name: TikTok, include-all: true}
- - {name: Netflix, include-all: true}
+  - {name: Netflix, include-all: true}
   - {name: Whatsapp, include-all: true}
   - {name: YouTube, include-all: true}
   - {name: Google, include-all: true}
