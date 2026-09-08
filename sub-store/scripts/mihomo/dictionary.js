@@ -152,10 +152,10 @@ const dict = {
           url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok_bypass.mrs" }
       ],
       "TikTok": [
-        { key: "tiktok_domain", behavior: "domain", format: "mrs",
+        { key: "tiktok_domain(wlrsx)", behavior: "domain", format: "mrs",
           url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok.mrs" },
-        // { key: "tiktok_domain", behavior: "domain", format: "mrs",
-        //   url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs" }
+        { key: "tiktok_domain", behavior: "domain", format: "mrs",
+          url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs" }
       ],
       "AI": [
         { key: "ai_domain", behavior: "domain", format: "mrs",
