@@ -19,7 +19,10 @@ const appRules       = dict.appRules       || {}; // { AI: [...], Facebook: [...
 
 let config = ProxyUtils.yaml.safeLoad($content ?? $files[0]);
 
-const TEST_URL = (typeof $arguments !== 'undefined' && $arguments.testUrl) || "https://www.gstatic.com/generate_204";
+const TEST_URL = "https://www.gstatic.com/generate_204";
+// const TEST_URL = "http://cp.cloudflare.com/generate_204";          // Cloudflare (推荐，全球高可用)
+// const TEST_URL = "http://captive.apple.com/hotspot-detect.html"; // Apple 苹果官方测速
+// const TEST_URL = "http://wifi.vivo.com.cn/generate_204";         // 国内连通性测试 (Vivo)
 
 // ---------- 1. proxy-group 模板：直接写死在脚本里 ----------
 const fallbackTemplate = { type: "fallback", url: TEST_URL, interval: 300 };
@@ -44,7 +47,7 @@ function buildGroupsForCountry({ code, filter }) {
     return [
         { name: `${code} 故障转移`, ...fallbackTemplate, filter, "include-all": true },
         { name: `${code} 自动延迟`, ...urltestTemplate, filter, "include-all": true },
-        { name: `${code} 负载均衡 (散列)`, ...lbHashTemplate, filter, "include-all": true },
+        // { name: `${code} 负载均衡 (散列)`, ...lbHashTemplate, filter, "include-all": true },
         { name: `${code} 负载均衡 (轮询)`, ...lbRRTemplate, filter, "include-all": true },
     ];
 }
@@ -52,20 +55,52 @@ const generatedGroups = presentCountries.flatMap(buildGroupsForCountry);
 const generatedNamesArr = generatedGroups.map(g => g.name);
 const generatedNames = new Set(generatedNamesArr);
 
+// ---------- 3.1 所有国家的“自动延迟”组，排除香港 ----------
+const autoGroupsAllExceptHK = presentCountries
+    .filter(({ code }) => !/香港|HK|Hong\s*Kong/i.test(code))
+    .map(({ code }) => `${code} 自动延迟`);
+
+// 总 Fallback 组
+const tiktokFallbackGroupName = "TikTok Fallback";
+
+const tiktokFallbackGroup = {
+    name: tiktokFallbackGroupName,
+    type: "fallback",
+    url: TEST_URL,
+    interval: 300,
+    proxies: autoGroupsAllExceptHK,
+};
+
 // ---------- 4. 拆分模板里手写的组：默认代理单独取出，其余都是"应用组" ----------
 const templateTargetGroup = existingGroups.find(g => g.name === targetGroupName);
 const appGroupsRaw = existingGroups.filter(
-    g => !generatedNames.has(g.name) && g.name !== targetGroupName
+    g => !generatedNames.has(g.name) && g.name !== targetGroupName && g.name !== tiktokFallbackGroupName
 );
 
 // ---------- 5. 应用组：注入 [默认代理, ...国家分组]，保留模板自身字段（exclude-filter 等）----------
 const appGroupProxies = [targetGroupName, ...generatedNamesArr];
 
-const patchedAppGroups = appGroupsRaw.map(g => ({
-    type: "select",              // 默认 select，模板显式写了 type 会覆盖
-    ...g,                        // 模板里手写的字段（exclude-filter、disable-udp 等）原样保留
-    proxies: appGroupProxies,    // 只强制覆盖 proxies
-}));
+
+const patchedAppGroups = appGroupsRaw.map(g => {
+    const proxies = [...appGroupProxies];
+
+    // 组名包含 TikTok，则额外加入全球 TikTok Fallback
+    if (/tiktok/i.test(g.name)) {
+        proxies.splice(1, 0, tiktokFallbackGroupName);
+    }
+
+    return {
+        type: "select",
+        ...g,
+        proxies,
+    };
+});
+
+// const patchedAppGroups = appGroupsRaw.map(g => ({
+//     type: "select",              // 默认 select，模板显式写了 type 会覆盖
+//     ...g,                        // 模板里手写的字段（exclude-filter、disable-udp 等）原样保留
+//     proxies: appGroupProxies,    // 只强制覆盖 proxies
+// }));
 
 // ---------- 6. 默认代理组：塞进所有国家分组 ----------
 const targetGroup = templateTargetGroup
@@ -73,7 +108,7 @@ const targetGroup = templateTargetGroup
     : { name: targetGroupName, type: "select", proxies: [...generatedNamesArr] };
 
 // ---------- 7. 组装最终 proxy-groups ----------
-config["proxy-groups"] = [targetGroup, ...patchedAppGroups, ...generatedGroups];
+config["proxy-groups"] = [targetGroup, ...patchedAppGroups, tiktokFallbackGroup, ...generatedGroups];
 
 // ---------- 8. 应用组 → 规则集/规则 自动写入 ----------
 config["rule-providers"] = config["rule-providers"] || {};
