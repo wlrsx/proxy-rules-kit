@@ -1,6 +1,6 @@
 # 必须直连的域名，当 MATCH 为 REJECT 时必须添加，不然 mihomo 内部下载规则等会拒绝
 payload:
-  - DOMAIN-WILDCARD,*.jsdelivr.net
+  - DOMAIN-SUFFIX,jsdelivr.net
   - DOMAIN,d.metacubex.one
   - DOMAIN,board.zash.run.place
   - DOMAIN,clash.razord.top
