@@ -1,122 +1,121 @@
 // ============================================================================
-// Script: 地区分组与规则智能注入引擎
-// Description: 自动探测节点地区并生成对应策略组，智能拼接应用组，并动态插入 Rule-Providers。
-//              AutoCountryGroups + AutoAppGroups + AutoAppRules
+// Script: 地区分组自动探测 & 聚合组生成 & AppGroup与Rule智能注入引擎
 // ============================================================================
 
-const targetGroupName = (typeof $arguments !== 'undefined' && $arguments.defGroupName)
-    ? $arguments.defGroupName
-    : "默认代理";
+const defGroupName = ($options && $options.defGroupName) || '默认代理';
 
-// ---------- 0. 拉取云端字典 ----------
-// const DICTIONARY_URL = "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@main/sub-store/scripts/mihomo/dictionary.js";
 const DICTIONARY_URL = "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/sub-store/scripts/mihomo/dictionary.js";
 const dictCode = await fetch(DICTIONARY_URL).then(res => res.text());
 const dict = new Function(dictCode)();
-
 const countryRegions = dict.countryRegions || [];
-const appRules       = dict.appRules       || {}; // { AI: [...], Facebook: [...], ... }
+const appRules = dict.appRules || {};
 
 let config = ProxyUtils.yaml.safeLoad($content ?? $files[0]);
+const existingGroups = config["proxy-groups"] || [];
 
 const TEST_URL = "https://www.gstatic.com/generate_204";
-// const TEST_URL = "http://cp.cloudflare.com/generate_204";          // Cloudflare (推荐，全球高可用)
-// const TEST_URL = "http://captive.apple.com/hotspot-detect.html"; // Apple 苹果官方测速
-// const TEST_URL = "http://wifi.vivo.com.cn/generate_204";         // 国内连通性测试 (Vivo)
 
-// ---------- 1. proxy-group 模板：直接写死在脚本里 ----------
-const fallbackTemplate = { type: "fallback", url: TEST_URL, interval: 300 };
-const urltestTemplate  = { type: "url-test", url: TEST_URL, interval: 300, tolerance: 50 };
-const lbHashTemplate   = { type: "load-balance", strategy: "consistent-hashing", url: TEST_URL, interval: 300 };
-const lbRRTemplate     = { type: "load-balance", strategy: "round-robin", url: TEST_URL, interval: 300 };
-
-const existingGroups = Array.isArray(config["proxy-groups"]) ? config["proxy-groups"] : [];
-
-// ---------- 2. 探测 proxies 中出现的国家 ----------
+// ---------- 1. 探测 proxies 中出现的国家 ----------
 const nodeNames = (Array.isArray(config.proxies) ? config.proxies : []).map(p => p.name || "");
 const compiledCountryRegions = countryRegions.map(region => ({
     ...region,
     regex: new RegExp(region.filter.replace(/^\(\?i\)/, ''), 'i'),
 }));
+
 const presentCountries = compiledCountryRegions.filter(({ regex }) =>
     nodeNames.some(name => regex.test(name))
 );
 
-// ---------- 3. 为每个国家生成四类分组 ----------
+// ---------- 2. 为每个存在的国家生成基础分组 ----------
 function buildGroupsForCountry({ code, filter }) {
     return [
-        { name: `${code} 故障转移`, ...fallbackTemplate, filter, "include-all": true },
-        { name: `${code} 自动延迟`, ...urltestTemplate, filter, "include-all": true },
-        // { name: `${code} 负载均衡 (散列)`, ...lbHashTemplate, filter, "include-all": true },
-        { name: `${code} 负载均衡 (轮询)`, ...lbRRTemplate, filter, "include-all": true },
+        { name: `${code} 故障转移`, type: "fallback", url: TEST_URL, interval: 300, filter, "include-all": true },
+        { name: `${code} 自动延迟`, type: "url-test", url: TEST_URL, interval: 300, tolerance: 50, filter, "include-all": true },
+        { name: `${code} 负载均衡 (轮询)`, type: "load-balance", strategy: "round-robin", url: TEST_URL, interval: 300, filter, "include-all": true },
     ];
 }
-const generatedGroups = presentCountries.flatMap(buildGroupsForCountry);
-const generatedNamesArr = generatedGroups.map(g => g.name);
-const generatedNames = new Set(generatedNamesArr);
+const generatedCountryGroups = presentCountries.flatMap(buildGroupsForCountry);
+const countryGroupNames = generatedCountryGroups.map(g => g.name);
 
-// ---------- 3.1 所有国家的“自动延迟”组，排除香港 ----------
-const autoGroupsAllExceptHK = presentCountries
-    .filter(({ code }) => !/香港|HK|Hong\s*Kong/i.test(code))
-    .map(({ code }) => `${code} 自动延迟`);
-
-// 总 Fallback 组
-const tiktokFallbackGroupName = "TikTok Fallback";
-
-const tiktokFallbackGroup = {
-    name: tiktokFallbackGroupName,
-    type: "fallback",
-    url: TEST_URL,
-    interval: 300,
-    proxies: autoGroupsAllExceptHK,
-};
-
-// ---------- 4. 拆分模板里手写的组：默认代理单独取出，其余都是"应用组" ----------
-const templateTargetGroup = existingGroups.find(g => g.name === targetGroupName);
-const appGroupsRaw = existingGroups.filter(
-    g => !generatedNames.has(g.name) && g.name !== targetGroupName && g.name !== tiktokFallbackGroupName
-);
-
-// ---------- 5. 应用组：注入 [默认代理, ...国家分组]，保留模板自身字段（exclude-filter 等）----------
-const appGroupProxies = [targetGroupName, ...generatedNamesArr];
-
-
-const patchedAppGroups = appGroupsRaw.map(g => {
-    const proxies = [...appGroupProxies];
-
-    // 组名包含 TikTok，则额外加入全球 TikTok Fallback
-    if (/tiktok/i.test(g.name)) {
-        proxies.splice(1, 0, tiktokFallbackGroupName);
-    }
+// ---------- 3. 生成聚合国家组的函数 ----------
+function buildAggregatedCountryGroup(groupName, parentType, childType, excludeRegex = null) {
+    const proxies = generatedCountryGroups
+        .filter(g => g.type === childType)
+        .filter(g => !excludeRegex || !excludeRegex.test(g.name))
+        .map(g => g.name);
 
     return {
-        type: "select",
-        ...g,
-        proxies,
+        name: groupName,
+        type: parentType,
+        url: TEST_URL,
+        interval: 300,
+        proxies: proxies.length > 0 ? proxies : ["DIRECT"],
     };
+}
+
+// ---------- 4. 创建聚合组 ----------
+const tiktokFallbackGroup = buildAggregatedCountryGroup(
+    "TikTok Fallback",
+    "fallback",
+    "url-test",
+    /香港|HK|Hong\s*Kong/i
+);
+
+const aiFallbackGroup = buildAggregatedCountryGroup(
+    "AI Fallback",
+    "fallback",
+    "fallback",
+    /香港|HK|Hong\s*Kong/i
+);
+
+// ---------- 5. AppGroup 应用组处理逻辑 ----------
+const templateTargetGroup = existingGroups.find(g => g.name === defGroupName);
+const appGroupsRaw = existingGroups.filter(g => g.name !== defGroupName);
+
+const targetGroup = templateTargetGroup
+    ? { type: "select", ...templateTargetGroup, proxies: [...countryGroupNames] }
+    : { name: defGroupName, type: "select", proxies: [...countryGroupNames] };
+
+const defaultAppGroupProxies = [defGroupName, ...countryGroupNames];
+
+const patchedAppGroups = appGroupsRaw.map(g => {
+    const existingProxies = Array.isArray(g.proxies) ? g.proxies : [];
+    // 使用 Set 去重，让原有的 REJECT/DIRECT 等优先放在最前面
+    const proxies = [...new Set([...existingProxies, ...defaultAppGroupProxies])];
+
+    const targetIdx = proxies.indexOf(defGroupName);
+    const insertIdx = targetIdx !== -1 ? targetIdx + 1 : 1; // 默认插入到“默认代理”之后，或排在 REJECT 之后
+
+    // 针对 TikTok 组注入
+    if (/tiktok/i.test(g.name)) {
+        proxies.splice(insertIdx, 0, tiktokFallbackGroup.name);
+    }
+
+    // 针对 AI 组注入
+    // 注意: \bAI\b 确保只匹配独立的 AI 单词，不会把 T(ai)wan 匹配进去
+    if (/\bAI\b|deepseek|gemini|chatgpt|openai|claude|copilot|anthropic|midjourney/i.test(g.name)) {
+        proxies.splice(insertIdx, 0, aiFallbackGroup.name);
+    }
+
+    return { type: "select", ...g, proxies };
 });
 
-// const patchedAppGroups = appGroupsRaw.map(g => ({
-//     type: "select",              // 默认 select，模板显式写了 type 会覆盖
-//     ...g,                        // 模板里手写的字段（exclude-filter、disable-udp 等）原样保留
-//     proxies: appGroupProxies,    // 只强制覆盖 proxies
-// }));
+// ---------- 6. 组装最终的 proxy-groups ----------
+config["proxy-groups"] = [
+    targetGroup,
+    ...patchedAppGroups,
+    aiFallbackGroup,
+    tiktokFallbackGroup,
+    ...generatedCountryGroups
+];
 
-// ---------- 6. 默认代理组：塞进所有国家分组 ----------
-const targetGroup = templateTargetGroup
-    ? { type: "select", ...templateTargetGroup, proxies: [...generatedNamesArr] }
-    : { name: targetGroupName, type: "select", proxies: [...generatedNamesArr] };
-
-// ---------- 7. 组装最终 proxy-groups ----------
-config["proxy-groups"] = [targetGroup, ...patchedAppGroups, tiktokFallbackGroup, ...generatedGroups];
-
-// ---------- 8. 应用组 → 规则集/规则 自动写入 ----------
+// ---------- 7. rule-providers / rules 规则自动注入 ----------
 config["rule-providers"] = config["rule-providers"] || {};
 config.rules = Array.isArray(config.rules) ? config.rules : [];
 
-const existingGroupNames = new Set(config["proxy-groups"].map(g => g.name));
+const finalGroupNames = new Set(config["proxy-groups"].map(g => g.name));
 
-// 已经在 rules 里出现过的 provider key（含手写、含上次脚本生成的），避免重复写入
+// 提取当前 rules 中已有的 RULE-SET 的 provider key，避免重复写入
 const usedKeys = new Set(
     config.rules
         .filter(r => typeof r === "string" && r.startsWith("RULE-SET,"))
@@ -127,11 +126,11 @@ const domainLines = [];
 const ipLines = [];
 
 Object.entries(appRules).forEach(([groupName, providers]) => {
-    // 字典里配置了，但模板还没建这个策略组 —— 跳过，避免规则指向不存在的组
-    if (!existingGroupNames.has(groupName)) return;
+    // 安全校验：字典里配置了，但配置中没有这个策略组 —— 跳过，避免规则指向不存在的组报错
+    if (!finalGroupNames.has(groupName)) return;
 
     providers.forEach(({ key, behavior, format, url, noResolve }) => {
-        if (usedKeys.has(key)) return; // 已存在，不重复添加
+        if (usedKeys.has(key)) return; // 已存在则跳过
 
         config["rule-providers"][key] = {
             type: "http",
@@ -143,6 +142,7 @@ Object.entries(appRules).forEach(([groupName, providers]) => {
 
         const line = `RULE-SET,${key},${groupName}${noResolve ? ",no-resolve" : ""}`;
 
+        // 区分 domain 规则 和 ipcidr 规则，保证 ipcidr 规则放在后面
         (behavior === "ipcidr" ? ipLines : domainLines).push(line);
         usedKeys.add(key);
     });
@@ -150,15 +150,15 @@ Object.entries(appRules).forEach(([groupName, providers]) => {
 
 const newRuleLines = [...domainLines, ...ipLines];
 
-if (newRuleLines.length) {
-    // 精准定位到“大陆直连规则块”的开头，忽略 GEOSITE,private
-    let anchorIndex = config.rules.findIndex(r => /^(?:GEOSITE|GEOIP),(?:cn|microsoft@cn|apple-cn|steam@cn)/i.test(r));
-    
+if (newRuleLines.length > 0) {
+    // 智能寻址：精准定位到“大陆直连规则块”的开头
+    let anchorIndex = config.rules.findIndex(r => typeof r === "string" && /^(?:GEOSITE|GEOIP),(?:cn|microsoft@cn|apple-cn|steam@cn)/i.test(r));
+
     // 如果没写大陆规则，就找 MATCH 兜底
     if (anchorIndex === -1) {
-        anchorIndex = config.rules.findIndex(r => /^MATCH,/i.test(r));
+        anchorIndex = config.rules.findIndex(r => typeof r === "string" && /^MATCH,/i.test(r));
     }
-    
+
     // 插入规则
     if (anchorIndex === -1) {
         config.rules.push(...newRuleLines);
@@ -167,8 +167,5 @@ if (newRuleLines.length) {
     }
 }
 
-// ---------- 9. 清理仅供 YAML 复用的锚点字段（mihomo 内核不认，留着也没影响，可选）----------
-delete config['group-anchor'];
-delete config['rule-anchor'];
-
+// ---------- 9. 返回配置 ----------
 $content = ProxyUtils.yaml.dump(config);
