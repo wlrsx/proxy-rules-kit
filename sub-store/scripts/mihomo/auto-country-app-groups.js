@@ -49,7 +49,7 @@ function buildAggregatedCountryGroup(groupName, parentType, childType, excludeRe
         type: parentType,
         url: TEST_URL,
         interval: 300,
-        proxies: proxies.length > 0 ? proxies : ["DIRECT"],
+        proxies: proxies.length > 0 ? proxies : [defGroupName],
     };
 }
 
