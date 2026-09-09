@@ -1,0 +1,102 @@
+# 搭配 sub-store 脚本 tiktok-multiuser.js 使用
+
+# 全局配置
+log-level: info
+mode: rule
+allow-lan: true
+bind-address: "*"
+socks-port: 1080
+ipv6: false
+unified-delay: true  # 统一延迟
+tcp-concurrent: true # TCP 并发
+
+authentication:
+  - "tt-01:tt-01"
+  - "tt-02:tt-02"
+  - "tt-03:tt-03"
+  - "us-01:us-01"
+  - "id-01:id-01"
+## 允许跳过验证的 IP 段
+skip-auth-prefixes:
+  - 127.0.0.1/8
+# - ::1/128
+
+external-ui: ui
+external-ui-name: zashboard
+external-ui-url: "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
+external-controller: "[::]:9090"
+secret: ""
+
+# GeoX 配置
+geodata-mode: true       # true为 dat，false为 mmdb
+geodata-loader: standard # standard 标准加载器，memconservative 专为内存受限 (小内存) 设备优化的加载器 (默认值)
+geox-url:                # https://github.com/MetaCubeX/meta-rules-dat
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
+geo-auto-update: true
+geo-update-interval: 24  # 单位：小时
+
+profile:
+  store-selected: true
+
+# 嗅探
+sniffer:
+  enable: true
+  ## 对所有未获取到域名的流量进行强制嗅探
+  parse-pure-ip: true
+  ## 是否使用嗅探结果作为实际访问，默认为 true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+
+proxy-groups:
+  - {name: TikTok-Bypass(tt-01), exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|港) }
+  - {name: TikTok(tt-01)}
+  - {name: Match(tt-01)}
+
+rules:
+  - RULE-SET,custom-direct,DIRECT
+
+  - SUB-RULE,(IN-USER,tt-01),tt-01
+  - MATCH,REJECT
+
+sub-rules:
+  tt-01:
+    - RULE-SET,tiktok_bypass_domain,TikTok-Bypass(tt-01)
+    - RULE-SET,tiktok_domain(wlrsx),TikTok(tt-01)
+    - RULE-SET,tiktok_domain,TikTok(tt-01)
+    - MATCH,Match(tt-01)
+
+rule-providers: 
+  custom-direct:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: yaml
+    url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/custom_direct.yaml"
+  tiktok_bypass_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok_bypass.mrs
+  tiktok_domain(wlrsx):
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok.mrs
+  tiktok_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs
