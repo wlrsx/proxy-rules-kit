@@ -2,6 +2,8 @@
 payload:
   # CDN
   - DOMAIN-SUFFIX,jsdelivr.net
+  - DOMAIN-SUFFIX,gh-proxy.com
+  - DOMAIN-SUFFIX,gh-proxy.org
 
   # 面板
   - DOMAIN,d.metacubex.one
