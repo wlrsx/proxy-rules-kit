@@ -9,20 +9,6 @@ const ICON_BASE = "https://fastly.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/ic
 const FLAG_ICON_BASE = "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags";
 
 const dict = {
-  aggregateGroups: [
-    {
-      name: "TikTok Fallback",
-      type: "fallback",
-      sourceType: "url-test",
-      excludeFilter: "(?i)(🇭🇰|\\bHK\\b|Hong\\s*Kong|香港|九龙|九龍|Kowloon)",
-    },
-    {
-      name: "AI Fallback",
-      type: "fallback",
-      sourceType: "url-test",
-      excludeFilter: "(?i)(🇭🇰|\\bHK\\b|Hong\\s*Kong|香港|九龙|九龍|Kowloon)",
-    },
-  ],
   // ==========================================
   // 1. 应用图标映射 (App Icons)
   // ==========================================
