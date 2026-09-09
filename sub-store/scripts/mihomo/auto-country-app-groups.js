@@ -1,8 +1,13 @@
 // ============================================================================
 // Script: 地区分组自动探测 & 聚合组生成 & AppGroup与Rule智能注入引擎
 // ============================================================================
+const DEFAULT_PROXY_NAME = "默认代理";
 
-const defGroupName = ($options && $options.defGroupName) || '默认代理';
+const defGroupName = (typeof $arguments !== 'undefined' && $arguments.defGroupName)
+    ? $arguments.defGroupName
+    : DEFAULT_PROXY_NAME;
+
+// const defGroupName = ($options && $options.defGroupName) || '默认代理';
 
 const DICTIONARY_URL = "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/sub-store/scripts/mihomo/dictionary.js";
 const dictCode = await fetch(DICTIONARY_URL).then(res => res.text());
@@ -69,8 +74,10 @@ const aiFallbackGroup = buildAggregatedCountryGroup(
 );
 
 // ---------- 5. AppGroup 应用组处理逻辑 ----------
-const templateTargetGroup = existingGroups.find(g => g.name === defGroupName);
-const appGroupsRaw = existingGroups.filter(g => g.name !== defGroupName);
+const templateTargetGroup = existingGroups.find(g => g.name === defGroupName) 
+                         || existingGroups.find(g => g.name === DEFAULT_PROXY_NAME);
+
+const appGroupsRaw = existingGroups.filter(g => g.name !== defGroupName && g.name !== DEFAULT_PROXY_NAME);
 
 const targetGroup = templateTargetGroup
     ? { type: "select", ...templateTargetGroup, proxies: [...countryGroupNames] }
@@ -112,6 +119,16 @@ config["proxy-groups"] = [
 // ---------- 7. rule-providers / rules 规则自动注入 ----------
 config["rule-providers"] = config["rule-providers"] || {};
 config.rules = Array.isArray(config.rules) ? config.rules : [];
+
+if (defGroupName !== DEFAULT_PROXY_NAME) {
+    const replaceRegex = new RegExp(`(,)${DEFAULT_PROXY_NAME}(,|$)`);
+    config.rules = config.rules.map(r => {
+        if (typeof r === "string") {
+            return r.replace(replaceRegex, `$1${defGroupName}$2`);
+        }
+        return r;
+    });
+}
 
 const finalGroupNames = new Set(config["proxy-groups"].map(g => g.name));
 
