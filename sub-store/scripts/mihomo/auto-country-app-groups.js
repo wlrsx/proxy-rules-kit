@@ -80,8 +80,8 @@ const templateTargetGroup = existingGroups.find(g => g.name === defGroupName)
 const appGroupsRaw = existingGroups.filter(g => g.name !== defGroupName && g.name !== DEFAULT_PROXY_NAME);
 
 const targetGroup = templateTargetGroup
-    ? { type: "select", ...templateTargetGroup, proxies: [...countryGroupNames] }
-    : { name: defGroupName, type: "select", proxies: [...countryGroupNames] };
+    ? { type: "select", ...templateTargetGroup, proxies: [...countryGroupNames], "include-all": true }
+    : { name: defGroupName, type: "select", proxies: [...countryGroupNames], "include-all": true };
 
 const defaultAppGroupProxies = [defGroupName, ...countryGroupNames];
 
@@ -104,7 +104,7 @@ const patchedAppGroups = appGroupsRaw.map(g => {
         proxies.splice(insertIdx, 0, aiFallbackGroup.name);
     }
 
-    return { type: "select", ...g, proxies };
+    return { type: "select", ...g, "include-all": true, proxies };
 });
 
 // ---------- 6. 组装最终的 proxy-groups ----------
