@@ -157,10 +157,16 @@ const dict = {
   // 匹配的组名指向对应的 Meta-rules-dat 等外部规则文件
   // ==========================================
   appRules: {
-    "CustomProxy": [
+    "Custom-Proxy": [
       {
         key: "customproxy_domain", behavior: "domain", format: "yaml",
-        url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/CustomProxy.yaml"
+        url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/custom_proxy.yaml"
+      }
+    ],
+    "Custom-Direct": [
+      {
+        key: "customproxy_domain", behavior: "domain", format: "yaml",
+        url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/custom_direct.yaml"
       }
     ],
     "TikTok-Bypass": [
