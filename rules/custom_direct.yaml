@@ -1,9 +1,14 @@
 # 必须直连的域名，当 MATCH 为 REJECT 时必须添加，不然 mihomo 内部下载规则等会拒绝
 payload:
+  # CDN
   - DOMAIN-SUFFIX,jsdelivr.net
+
+  # 面板
   - DOMAIN,d.metacubex.one
   - DOMAIN,board.zash.run.place
   - DOMAIN,clash.razord.top
   - DOMAIN,yacd.haishan.me
+
+  # 自定义
   - DOMAIN-SUFFIX,jadelive.top
   - DOMAIN-SUFFIX,0758007.xyz
