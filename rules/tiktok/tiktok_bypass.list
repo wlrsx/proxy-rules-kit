@@ -1,3 +1,5 @@
+# mihomo convert-ruleset domain tiktok_bypass.yaml tiktok_bypass.mrs
+
 DOMAIN,tiktok.com
 DOMAIN,www.tiktok.com
 DOMAIN,webcast.tiktok.com
