@@ -1,0 +1,19 @@
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  inet4-address: # 必须手动设置 ipv4 地址段
+  - 198.19.0.1/30
+  inet6-address: # 必须手动设置 ipv6 地址段
+  - "fdfe:dcba:9877::1/126"
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  device: utun0
+  mtu: 9000
+  strict-route: true
+  gso: true
+  gso-max-size: 65536
+  udp-timeout: 300
