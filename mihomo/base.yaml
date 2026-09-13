@@ -56,9 +56,9 @@ geo-auto-update: true
 geo-update-interval: 24  # 单位：小时
 
 proxy-groups:
-  - {name: AI, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港|香港|九龙|九龍|Kowloon), include-all: true }
+  - {name: AI, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港), include-all: true }
   - {name: DeepSeek, include-all: true}
-  - {name: TikTok-Bypass, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港|香港|九龙|九龍|Kowloon), include-all: true }
+  - {name: TikTok-Bypass, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港), include-all: true }
   - {name: TikTok, include-all: true}
   - {name: Whatsapp, include-all: true}
   - {name: YouTube, include-all: true}

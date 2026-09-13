@@ -1,14 +1,14 @@
 proxy-groups:
-  - {name: AI, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港|香港|九龙|九龍|Kowloon), include-all: true }
-  - {name: DeepSeek, include-all: true}
-  - {name: TikTok-Bypass, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港|香港|九龙|九龍|Kowloon), include-all: true }
-  - {name: TikTok, include-all: true}
-  - {name: Netflix, include-all: true}
-  - {name: Whatsapp, include-all: true}
-  - {name: YouTube, include-all: true}
-  - {name: Google, include-all: true}
-  - {name: Facebook, include-all: true}
-  - {name: Telegram, include-all: true}
+  - {name: AI, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港) }
+  - {name: DeepSeek}
+  - {name: TikTok-Bypass, exclude-filter: (?i)(🇭🇰|\bHK\b|Hong\sKong|香港) }
+  - {name: TikTok}
+  - {name: Netflix}
+  - {name: Whatsapp}
+  - {name: YouTube}
+  - {name: Google}
+  - {name: Facebook}
+  - {name: Telegram}
   - {name: Ads, proxies: ["REJECT", "默认代理"]}
 
 rules:
