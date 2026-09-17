@@ -1,9 +1,9 @@
 # 
 payload:
-  - DOMAIN,ip.jadelive.top
-  - DOMAIN-SUFFIX,vps000.com
-  - DOMAIN-SUFFIX,canva.com
-  - DOMAIN-SUFFIX,deepl.com
-  - DOMAIN-SUFFIX,notion.so
-  - DOMAIN-SUFFIX,technews.tw
-#  - DOMAIN,challenges.cloudflare.com
+  - 'ip.jadelive.top'
+  - '+.vps000.com'
+  - '+.canva.com'
+  - '+.deepl.com'
+  - '+.notion.so'
+  - '+.technews.tw'
+#  - 'challenges.cloudflare.com'
