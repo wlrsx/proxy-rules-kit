@@ -40,7 +40,7 @@ const dict = {
     "teams": `${ICON_BASE}/Microsoft/Teams/Teams.png`,
 
     // [人工智能 AI]
-    "ai": `${ICON_BASE}/AI/AI.png`,
+    "ai": `${ICON_BASE}/System/Bot/Bot.png`,
     "chatgpt": `${ICON_BASE}/AI/OpenAI/OpenAI.png`,
     "openai": `${ICON_BASE}/AI/OpenAI/OpenAI.png`,
     "claude": `${ICON_BASE}/AI/Anthropic/Anthropic.png`,
