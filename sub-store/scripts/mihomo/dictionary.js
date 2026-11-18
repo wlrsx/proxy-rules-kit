@@ -344,6 +344,12 @@ const dict = {
         url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs", noResolve: true
       },
     ],
+    "PayPal": [
+      {
+        key: "paypal_domain", behavior: "domain", format: "mrs",
+        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/paypal.mrs"
+      }
+    ],
     "Games": [
       {
         key: "games_domain", behavior: "domain", format: "mrs",
