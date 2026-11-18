@@ -213,171 +213,171 @@ const dict = {
     "Custom-Proxy": [
       {
         key: "customproxy_domain", behavior: "domain", format: "yaml",
-        url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/custom_proxy.yaml"
+        url: "https://fastly.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/custom_proxy.yaml"
       }
     ],
     "Custom-Direct": [
       {
         key: "customproxy_domain", behavior: "domain", format: "yaml",
-        url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/custom_direct.yaml"
+        url: "https://fastly.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/custom_direct.yaml"
       }
     ],
     "TikTok-Bypass": [
       {
         key: "tiktok_bypass_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok_bypass.mrs"
+        url: "https://fastly.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok_bypass.mrs"
       }
     ],
     "TikTok": [
       {
         key: "tiktok_domain(wlrsx)", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok.mrs"
+        url: "https://fastly.jsdelivr.net/gh/wlrsx/proxy-rules-kit@refs/heads/main/rules/tiktok/tiktok.mrs"
       },
       {
         key: "tiktok_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs"
       }
     ],
     "AI": [
       {
         key: "ai_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs"
       }
     ],
     "DeepSeek": [
       {
         key: "deepseek_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/deepseek.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/deepseek.mrs"
       }
     ],
     "YouTube": [
       {
         key: "youtube_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs"
       }
     ],
     "Google": [
       {
         key: "google_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
       },
       {
         key: "google_ipcidr", behavior: "ipcidr", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs", noResolve: true
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs", noResolve: true
       },
     ],
     "Microsoft": [
       {
         key: "microsoft_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs"
       }
     ],
     "Whatsapp": [
       {
         key: "whatsapp_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/whatsapp.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/whatsapp.mrs"
       }
     ],
     "Facebook": [
       {
         key: "facebook_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/facebook.mrs"
       },
       {
         key: "facebook_ipcidr", behavior: "ipcidr", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/facebook.mrs", noResolve: true
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/facebook.mrs", noResolve: true
       },
     ],
     "Instagram": [
       {
         key: "instagram_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/instagram.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/instagram.mrs"
       }
     ],
     "X": [
       {
         key: "x_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/x.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/x.mrs"
       },
       {
         key: "twitter_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs"
       },
       {
         key: "twitter_ipcidr", behavior: "ipcidr", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs", noResolve: true
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs", noResolve: true
       },
     ],
     "Twitter": [
       {
         key: "x_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/x.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/x.mrs"
       },
       {
         key: "twitter_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs"
       },
       {
         key: "twitter_ipcidr", behavior: "ipcidr", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs", noResolve: true
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs", noResolve: true
       },
     ],
     "Netflix": [
       {
         key: "netflix_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs"
       }
     ],
     "Reddit": [
       {
         key: "reddit_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/reddit.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/reddit.mrs"
       }
     ],
     "Telegram": [
       {
         key: "telegram_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs"
       },
       {
         key: "telegram_ipcidr", behavior: "ipcidr", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs", noResolve: true
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs", noResolve: true
       },
     ],
     "PayPal": [
       {
         key: "paypal_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/paypal.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/paypal.mrs"
       }
     ],
     "Wise": [
       {
         key: "wise_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/wise.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/wise.mrs"
       }
     ],
     "Games": [
       {
         key: "games_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games-!cn.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games-!cn.mrs"
       }
     ],
     "Ads": [
       {
         key: "ads_domain", behavior: "domain", format: "mrs",
-        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads.mrs"
+        url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads.mrs"
       },
 
       // https://github.com/privacy-protection-tools/anti-AD
       {
         key: "anti_ad_domain", behavior: "domain", format: "yaml",
-        url: "https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-clash.yaml"
+        url: "https://fastly.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/anti-ad-clash.yaml"
       },
 
       // https://github.com/loyalsoldier/v2ray-rules-dat
       {
         key: "reject_domain", behavior: "domain", format: "text",
-        url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/reject-list.txt"
+        url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/reject-list.txt"
       },
     ],
   },
