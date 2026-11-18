@@ -350,6 +350,12 @@ const dict = {
         url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/paypal.mrs"
       }
     ],
+    "Wise": [
+      {
+        key: "wise_domain", behavior: "domain", format: "mrs",
+        url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/wise.mrs"
+      }
+    ],
     "Games": [
       {
         key: "games_domain", behavior: "domain", format: "mrs",
